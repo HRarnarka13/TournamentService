@@ -41,8 +41,6 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
         {
             String msg = "Duplicate entry";
             log.warning(msg);
-            throw new TournamentServiceException(msg);
-
         }
     }
 
