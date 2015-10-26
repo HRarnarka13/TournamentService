@@ -19,6 +19,6 @@ public class TournamentEnrollmentRowMapper implements RowMapper<TournamentEnroll
         t.setTournamentid(rs.getInt("tournamentid"));
         t.setTeamId(rs.getInt("fantasy_teamid"));
         t.setScore(rs.getDouble("score"));
-        return null;
+        return t;
     }
 }

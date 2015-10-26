@@ -12,9 +12,8 @@ public class TournamentEnrollment {
 
     }
 
-    public TournamentEnrollment(int userId, int teamId, double score) {
-
-        this.userId = userId;
+    public TournamentEnrollment(int tournamentid, int teamId, double score) {
+        this.tournamentid = tournamentid;
         this.teamId = teamId;
         this.score = score;
     }
