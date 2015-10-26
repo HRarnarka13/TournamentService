@@ -1,5 +1,6 @@
 package is.rufan.tournament.service;
 
+import is.rufan.tournament.data.TournamentDataGateway;
 import is.rufan.tournament.domain.Tournament;
 import is.ruframework.data.RuDataAccessFactory;
 
@@ -12,14 +13,13 @@ import java.util.List;
  */
 public class TournamentServiceData implements TournamentService {
     RuDataAccessFactory factory;
-    FantasyTeamDataGateway fantasyTeamDataGateway;
-
+    TournamentDataGateway tournamentDataGateway;
     public void addTournament(Tournament tournament) throws TournamentServiceException {
-
+        tournamentDataGateway.addTournament(tournament);
     }
 
     public List<Tournament> getTournaments() {
-        return null;
+        tournamentDataGateway.getTournaments();
     }
 
     public Tournament getTournamentById(int tournamentid) {

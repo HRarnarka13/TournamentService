@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,6 +64,17 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
 
     public void closeTournament(int tournamentid) {
         String sql = "Update tournaments Set status = 0 WHERE tournamentId = ?";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+        query.update(sql, tournamentid);
+    }
+
+    public List<Tournament> getTournaments() {
+        String sql = "Select * from tournaments";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+
+        List<Tournament> tournaments = query.query(sql, new TournamentRowMapper());
+
+        return tournaments;
 
     }
 
