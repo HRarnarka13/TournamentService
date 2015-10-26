@@ -10,7 +10,6 @@ import java.util.List;
  */
 public interface TournamentEnrollmentDataGateway extends RuDataAccess {
     public void addEnrollment(TournamentEnrollment enrollment);
-    public double getScore(TournamentEnrollment enrollment);
     public List<TournamentEnrollment> getEnrollments();
     public List<TournamentEnrollment> getEnrollmentsByTournamentId(int tournamentId);
     public List<TournamentEnrollment> getEnrollmentsByTeamId(int teamId);

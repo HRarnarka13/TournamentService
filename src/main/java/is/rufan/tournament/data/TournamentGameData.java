@@ -49,7 +49,7 @@ public class TournamentGameData extends RuData implements TournamentGameDataGate
         {
             String msg = "Empty result";
             log.warning(msg);
-            return null
+            return null;
         }
     }
 
