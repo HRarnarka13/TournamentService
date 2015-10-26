@@ -10,6 +10,5 @@ import java.util.List;
  */
 public interface TournamentGameDataGateway extends RuDataAccess{
     public void addGame(TournamentGame game);
-    public List<TournamentGame> getGamesByTournamentId(int tournamentId);
-    public List<TournamentGame> getTournamentsForGame(int gameid);
+    public List<Integer> getGamesByTournamentId(int tournamentId);
 }

@@ -76,4 +76,12 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
 
     }
 
+    public List<Tournament> getActiveTournaments() {
+        String sql = "SELECT * FROM tournaments WHERE status = 1";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+
+        List<Tournament> tournaments = query.query(sql, new TournamentRowMapper());
+        return tournaments;
+    }
+
 }

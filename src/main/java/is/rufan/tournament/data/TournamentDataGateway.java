@@ -17,4 +17,5 @@ public interface TournamentDataGateway extends RuDataAccess {
     public Tournament getTournament(int tournamentid);
     public void closeTournament(int tournamentid);
     public List<Tournament> getTournaments();
+    public List<Tournament> getActiveTournaments();
 }

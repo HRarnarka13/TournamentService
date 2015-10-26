@@ -37,28 +37,12 @@ public class TournamentGameData extends RuData implements TournamentGameDataGate
         }
     }
 
-    public List<TournamentGame> getGamesByTournamentId(int tournamentId) {
-        String sql = "Select * from tournament_games where tournamentId = ?";
+    public List<Integer> getGamesByTournamentId(int tournamentId) {
+        String sql = "Select gameId from tournament_games where tournamentId = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
         try
         {
-            List<TournamentGame> games = query.query(sql, new TournamentGameRowMapper(), tournamentId );
-            return games;
-        }
-        catch(EmptyResultDataAccessException ex)
-        {
-            String msg = "Empty result";
-            log.warning(msg);
-            return null;
-        }
-    }
-
-    public List<TournamentGame> getTournamentsForGame(int gameid) {
-        String sql = "Select *  from tournament_games where gameId = ?";
-        JdbcTemplate query = new JdbcTemplate(getDataSource());
-        try
-        {
-            List<TournamentGame> games = query.query(sql, new TournamentGameRowMapper(), gameid);
+            List<Integer> games = (List<Integer>) query.queryForList(sql, Integer.class, tournamentId);
             return games;
         }
         catch(EmptyResultDataAccessException ex)
