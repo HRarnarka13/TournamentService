@@ -1,6 +1,6 @@
 target
 .idea
-.iml
+*.iml
 .idea_modules
 .classpath
 .progject
