@@ -4,7 +4,7 @@ package is.rufan.tournament.domain;
  * Created by eysteinn on 26/10/15.
  */
 public class TournamentEnrollment {
-    private int userId;
+    private int tournamentid;
     private int teamId;
     private double score;
 
@@ -12,18 +12,17 @@ public class TournamentEnrollment {
 
     }
 
-    public TournamentEnrollment(int userId, int teamId, double score) {
-
-        this.userId = userId;
+    public TournamentEnrollment(int tournamentid, int teamId, double score) {
+        this.tournamentid = tournamentid;
         this.teamId = teamId;
         this.score = score;
     }
-    public int getUserId() {
-        return userId;
+    public int getTournamentid() {
+        return tournamentid;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setTournamentid(int tournamentid) {
+        this.tournamentid = tournamentid;
     }
 
     public int getTeamId() {
