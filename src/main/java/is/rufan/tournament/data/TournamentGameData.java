@@ -49,10 +49,23 @@ public class TournamentGameData extends RuData implements TournamentGameDataGate
         {
             String msg = "Empty result";
             log.warning(msg);
+            return null
         }
     }
 
     public List<TournamentGame> getTournamentsForGame(int gameid) {
-        return null;
+        String sql = "Select *  from tournament_games where gameId = ?";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+        try
+        {
+            List<TournamentGame> games = query.query(sql, new TournamentGameRowMapper(), gameid);
+            return games;
+        }
+        catch(EmptyResultDataAccessException ex)
+        {
+            String msg = "Empty result";
+            log.warning(msg);
+            return null;
+        }
     }
 }
