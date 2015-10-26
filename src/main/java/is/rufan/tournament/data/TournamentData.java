@@ -2,6 +2,7 @@ package is.rufan.tournament.data;
 
 import is.rufan.tournament.domain.Tournament;
 import is.rufan.tournament.service.TournamentServiceException;
+import is.ruframework.data.RuData;
 
 /**
  * Created by arnarkari on 26/10/15.
