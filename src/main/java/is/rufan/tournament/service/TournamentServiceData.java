@@ -19,7 +19,7 @@ public class TournamentServiceData implements TournamentService {
     }
 
     public List<Tournament> getTournaments() {
-        tournamentDataGateway.getTournaments();
+        return tournamentDataGateway.getTournaments();
     }
 
     public Tournament getTournamentById(int tournamentid) {
