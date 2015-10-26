@@ -3,6 +3,13 @@ package is.rufan.tournament.data;
 import is.rufan.tournament.domain.Tournament;
 import is.rufan.tournament.service.TournamentServiceException;
 import is.ruframework.data.RuData;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by arnarkari on 26/10/15.
@@ -12,10 +19,51 @@ import is.ruframework.data.RuData;
 public class TournamentData extends RuData implements  TournamentDataGateway {
 
     public void addTournament(Tournament tournament) throws TournamentServiceException {
+        SimpleJdbcInsert insertTournament =
+                new SimpleJdbcInsert(getDataSource())
+                        .withTableName("tournaments")
+                        .usingGeneratedKeyColumns("tournamentid");
 
+        Map<String, Object> tournamentParameters = new HashMap<String, Object>(10);
+        tournamentParameters.put("name", tournament.getName());
+        tournamentParameters.put("entry_fee", tournament.getEntryFee());
+        tournamentParameters.put("start_time", tournament.getStartTime());
+        tournamentParameters.put("end_time", tournament.getEndTime());
+        tournamentParameters.put("status", tournament.isStatus());
+        tournamentParameters.put("maxentries", tournament.getMaxEntries());
+
+        try
+        {
+            insertTournament.execute(tournamentParameters);
+        }
+        catch (DataIntegrityViolationException divex)
+        {
+            String msg = "Duplicate entry";
+            log.warning(msg);
+            throw new TournamentServiceException(msg);
+
+        }
     }
 
     public Tournament getTournament(int tournamentid) {
-        return null;
+        String sql = "Select * from tournaments where id = ?";
+        JdbcTemplate queryTournament = new JdbcTemplate(getDataSource());
+
+        try
+        {
+            Tournament tournament = queryTournament.queryForObject(sql, new Object[]{tournamentid},
+                    new TournamentRowMapper());
+            return tournament;
+        }
+        catch (EmptyResultDataAccessException erdax)
+        {
+            return null;
+        }
     }
+
+    public void closeTournament(int tournamentid) {
+        String sql = "Update tournaments Set status = 0 WHERE tournamentId = ?";
+
+    }
+
 }
