@@ -10,3 +10,6 @@ create table tournaments
   status bit,
   maxentries int
 );
+
+
+SELECT * FROM tournaments

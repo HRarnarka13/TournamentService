@@ -45,7 +45,7 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
     }
 
     public Tournament getTournament(int tournamentid) {
-        String sql = "Select * from tournaments where id = ?";
+        String sql = "Select * from tournaments where tournamentId = ?";
         JdbcTemplate queryTournament = new JdbcTemplate(getDataSource());
 
         try

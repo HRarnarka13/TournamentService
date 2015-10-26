@@ -26,17 +26,6 @@ public class TournamentServiceData implements TournamentService {
         gameDataGateway = (TournamentGameDataGateway) factory.getDataAccess("gameData");
     }
 
-    /*
-      public TeamServiceData() throws RuException
-  {
-    factory = RuDataAccessFactory.getInstance("teamdata.xml");
-    teamDataGateway = (TeamDataGateway) factory.getDataAccess("teamData");
-    venueDataGateway = (VenueDataGateway) factory.getDataAccess("venueData");
-
-  }
-
-     */
-
     public void addTournament(Tournament tournament) throws TournamentServiceException {
         tournamentDataGateway.addTournament(tournament);
     }
