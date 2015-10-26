@@ -14,7 +14,6 @@ public class Tournament {
 
     private int tournamentid;
     private String name;
-    private String description;
     private Date startTime;
     private Date endTime;
     private boolean status;
@@ -26,10 +25,9 @@ public class Tournament {
     public Tournament() {
     }
 
-    public Tournament(int tournamentid, String name, String description, Date startTime, Date endTime, boolean status, double entryFee, int maxEntries, List<Integer> tournamentGames, List<TournamentEnrollment> enrollments) {
+    public Tournament(int tournamentid, String name, Date startTime, Date endTime, boolean status, double entryFee, int maxEntries, List<Integer> tournamentGames, List<TournamentEnrollment> enrollments) {
         this.tournamentid = tournamentid;
         this.name = name;
-        this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
@@ -39,9 +37,8 @@ public class Tournament {
         this.enrollments = enrollments;
     }
 
-    public Tournament(String name, String description, Date startTime, Date endTime, boolean status, double entryFee, int maxEntries, List<Integer> tournamentGames, List<TournamentEnrollment> enrollments) {
+    public Tournament(String name, Date startTime, Date endTime, boolean status, double entryFee, int maxEntries, List<Integer> tournamentGames, List<TournamentEnrollment> enrollments) {
         this.name = name;
-        this.description = description;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
@@ -68,13 +65,6 @@ public class Tournament {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
     public Date getStartTime() {
         return startTime;
     }
