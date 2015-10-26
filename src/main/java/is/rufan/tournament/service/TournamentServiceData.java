@@ -12,7 +12,7 @@ import java.util.List;
 public class TournamentServiceData implements TournamentService {
 
     public void addTournament(Tournament tournament) throws TournamentServiceException {
-        
+
     }
 
     public List<Tournament> getTournaments() {
