@@ -23,6 +23,9 @@ public class TournamentServiceData implements TournamentService {
     }
 
     public Tournament getTournamentById(int tournamentid) {
-        return null;
+
+        return tournamentDataGateway.getTournament(tournamentid);
     }
+
+
 }

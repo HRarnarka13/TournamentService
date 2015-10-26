@@ -14,4 +14,5 @@ public interface TournamentService {
     public void addTournament(Tournament tournament) throws  TournamentServiceException;
     public List<Tournament> getTournaments();
     public Tournament getTournamentById(int tournamentid);
+
 }
