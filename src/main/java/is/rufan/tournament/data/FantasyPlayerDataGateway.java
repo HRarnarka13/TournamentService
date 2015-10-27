@@ -42,5 +42,5 @@ public interface FantasyPlayerDataGateway {
      * @param fantasy_teamid The id of the fantasy team
      * @return  A list of fantasy players in a specific team
      */
-    public List<FantasyPlayer> getFantasyPlayerByTeamId(int fantasy_teamid);
+    public List<Integer> getFantasyPlayersByTeamId(int fantasy_teamid);
 }

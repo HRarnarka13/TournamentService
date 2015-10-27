@@ -28,7 +28,7 @@ public class TournamentServiceData implements TournamentService {
         factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         tournamentDataGateway = (TournamentDataGateway) factory.getDataAccess("tournamentData");
         gameDataGateway = (TournamentGameDataGateway) factory.getDataAccess("gameData");
-
+        tournamentEnrollmentDataGateway = (TournamentEnrollmentDataGateway) factory.getDataAccess("tournamentEnrollmentData");
         fantasyTeamDataGateway = (FantasyTeamDataGateway) factory.getDataAccess("fantasyTeamData");
     }
 
@@ -55,7 +55,10 @@ public class TournamentServiceData implements TournamentService {
     }
 
     public Tournament getTournamentById(int tournamentId) {
-        return tournamentDataGateway.getTournament(tournamentId);
+        Tournament tournament = tournamentDataGateway.getTournament(tournamentId);
+        List<TournamentEnrollment> tournamentEnrollments = tournamentEnrollmentDataGateway.getEnrollmentsByTournamentId(tournamentId);
+        tournament.setEnrollments(tournamentEnrollments);
+        return tournament;
     }
 
     public List<FantasyTeam> getFantasyTeamsByTournamentId(int tournamentid) {
@@ -69,8 +72,8 @@ public class TournamentServiceData implements TournamentService {
         return fantasyTeams;
     }
 
-    public void addEnrollment(int userId, int teamId) {
-        TournamentEnrollment tm = new TournamentEnrollment(userId, teamId, 0);
+    public void addEnrollment(int tournamentId, int teamId) {
+        TournamentEnrollment tm = new TournamentEnrollment(tournamentId, teamId, 0);
         tournamentEnrollmentDataGateway.addEnrollment(tm);
     }
 }

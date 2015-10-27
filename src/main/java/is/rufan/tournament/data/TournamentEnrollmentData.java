@@ -31,9 +31,9 @@ public class TournamentEnrollmentData extends RuData implements TournamentEnroll
         SimpleJdbcInsert insertEnrollment = new SimpleJdbcInsert(getDataSource())
                 .withTableName("tournament_enrollments");
 
-        Map<String, Object> parameters = new HashMap<String, Object>(4);
-        parameters.put("teamId", enrollment.getTeamId());
+        Map<String, Object> parameters = new HashMap<String, Object>(3);
         parameters.put("tournamentId", enrollment.getTournamentid());
+        parameters.put("fantasy_teamId", enrollment.getTeamId());
         parameters.put("score", enrollment.getScore());
 
         try

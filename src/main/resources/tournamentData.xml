@@ -29,4 +29,5 @@
     <bean id="gameData" class="is.rufan.tournament.data.TournamentGameData"></bean>
     <bean id="fantasyTeamData" class="is.rufan.tournament.data.FantasyTeamData"></bean>
     <bean id="fantasyPlayerData" class="is.rufan.tournament.data.FantasyPlayerData"></bean>
+    <bean id="tournamentEnrollmentData" class="is.rufan.tournament.data.TournamentEnrollmentData"></bean>
 </beans>
