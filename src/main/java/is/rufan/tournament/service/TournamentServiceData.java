@@ -65,8 +65,9 @@ public class TournamentServiceData implements TournamentService {
         // Get the tournament
         Tournament t = tournamentDataGateway.getTournament(tournamentid);
         List<FantasyTeam> fantasyTeams = new ArrayList<FantasyTeam>();
+        List<TournamentEnrollment> enrollments = tournamentEnrollmentDataGateway.getEnrollmentsByTournamentId(tournamentid);
         // For each enrollment get the fantasy team
-        for (TournamentEnrollment te : t.getEnrollments()) {
+        for (TournamentEnrollment te : enrollments) {
             fantasyTeams.add(fantasyTeamDataGateway.getFantasyTeam(te.getTeamId()));
         }
         return fantasyTeams;
