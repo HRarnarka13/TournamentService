@@ -28,7 +28,7 @@ public class TournamentServiceData implements TournamentService {
         factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         tournamentDataGateway = (TournamentDataGateway) factory.getDataAccess("tournamentData");
         gameDataGateway = (TournamentGameDataGateway) factory.getDataAccess("gameData");
-
+        tournamentEnrollmentDataGateway = (TournamentEnrollmentDataGateway) factory.getDataAccess("tournamentEnrollmentData");
         fantasyTeamDataGateway = (FantasyTeamDataGateway) factory.getDataAccess("fantasyTeamData");
     }
 
