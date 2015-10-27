@@ -50,7 +50,7 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
      */
     public FantasyTeam getFantasyTeam(int fantasy_teamid) {
 
-        String sql = "Select * from fantasy_teams where id = ?";
+        String sql = "Select * from fantasy_teams where fantasy_teamid = ?";
         JdbcTemplate queryFantasyTeam = new JdbcTemplate(getDataSource());
 
         try {

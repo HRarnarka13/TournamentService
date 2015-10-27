@@ -44,17 +44,18 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
         }
     }
 
+
     /**
      * Gets a fantasy player with a specifc Id
      * @param playerid the id the player
      * @return A fantasy player with a specific Id
      */
-    public FantasyPlayer getFantasyPlayer(int playerid) {
-        String sql = "Select * from fantasy_team_players where id = ?";
+    public FantasyPlayer getFantasyPlayer(int playerid, int fantasy_teamid) {
+        String sql = "Select * from fantasy_team_players where playerid = ? and fantasy_teamid = ?";
         JdbcTemplate queryFantasyPlayer = new JdbcTemplate(getDataSource());
 
         try {
-            FantasyPlayer fantasyPlayer = queryFantasyPlayer.queryForObject(sql, new Object[]{ playerid },
+            FantasyPlayer fantasyPlayer = queryFantasyPlayer.queryForObject(sql, new Object[]{ playerid, fantasy_teamid },
                     new FantasyPlayerRowMapper());
             return fantasyPlayer;
         } catch (EmptyResultDataAccessException erdaex) {
@@ -80,7 +81,7 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
      */
     public List<FantasyPlayer> getFantasyPlayerByTeamId(int fantasy_teamid) {
 
-        String sql = "Select * from fantasy_team_players where id = ?";
+        String sql = "Select * from fantasy_team_players where fantasy_teamid = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
         List<FantasyPlayer> fantasyPlayers = query.query(sql, new Object[]{ fantasy_teamid }
                                                             , new FantasyPlayerRowMapper());

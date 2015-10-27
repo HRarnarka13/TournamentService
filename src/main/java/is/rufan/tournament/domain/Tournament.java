@@ -1,7 +1,5 @@
 package is.rufan.tournament.domain;
 
-import com.sun.tools.corba.se.idl.StringGen;
-
 import java.util.Date;
 import java.util.List;
 
