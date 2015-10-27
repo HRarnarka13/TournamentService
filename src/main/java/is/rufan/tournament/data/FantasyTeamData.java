@@ -29,7 +29,7 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
      */
     public int addFantasyTeam(int userid) throws FantasyTeamSeriveExeption {
         SimpleJdbcInsert insertFantasyTeam  = new SimpleJdbcInsert(getDataSource())
-                .withTableName("fantasy_team")
+                .withTableName("fantasy_teams")
                 .usingGeneratedKeyColumns("fantasy_teamid");
 
         Map<String, Object> fantasyTeamParameters = new HashMap<String, Object>(2);

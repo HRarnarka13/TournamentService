@@ -1,9 +1,6 @@
 package is.rufan.tournament.service;
 
-import is.rufan.tournament.data.FantasyTeamDataGateway;
-import is.rufan.tournament.data.TournamentDataGateway;
-import is.rufan.tournament.data.TournamentGameData;
-import is.rufan.tournament.data.TournamentGameDataGateway;
+import is.rufan.tournament.data.*;
 import is.rufan.tournament.domain.FantasyTeam;
 import is.rufan.tournament.domain.Tournament;
 import is.rufan.tournament.domain.TournamentEnrollment;
@@ -23,6 +20,7 @@ public class TournamentServiceData implements TournamentService {
     RuDataAccessFactory factory;
     RuDataAccessFactory factory_service;
     TournamentGameDataGateway gameDataGateway;
+    TournamentEnrollmentDataGateway tournamentEnrollmentDataGateway;
 
     TournamentDataGateway tournamentDataGateway;
     FantasyTeamService fantasyTeamService;
@@ -71,5 +69,10 @@ public class TournamentServiceData implements TournamentService {
             fantasyTeams.add(fantasyTeamService.getFantasyTeam(te.getTeamId()));
         }
         return fantasyTeams;
+    }
+
+    public void addEnrollment(int userId, int teamId) {
+        TournamentEnrollment tm = new TournamentEnrollment(userId, teamId, 0);
+        tournamentEnrollmentDataGateway.addEnrollment(tm);
     }
 }

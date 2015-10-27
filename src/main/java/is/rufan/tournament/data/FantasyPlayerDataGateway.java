@@ -23,12 +23,6 @@ public interface FantasyPlayerDataGateway {
      * @throws FantasyTeamSeriveExeption
      */
     public void addFantasyPlayer(FantasyPlayer fantasyPlayer) throws FantasyTeamSeriveExeption;
-    /**
-     * Gets a fantasy player with a specifc Id
-     * @param playerid the id the player
-     * @return A fantasy player with a specific Id
-     */
-    public FantasyPlayer getFantasyPlayer(int playerid);
 
     /**
      * Gets all fantasy players, i.e all players that are in some fantasy team
