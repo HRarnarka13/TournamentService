@@ -36,7 +36,11 @@ public class FantasyTeamServiceData implements FantasyTeamService {
         FantasyTeam fantasyTeam = fantasyTeamDataGateway.getFantasyTeam(fantasy_teamid);
         List<Integer> players = fantasyPlayerDataGateway.getFantasyPlayersByTeamId(fantasy_teamid);
         fantasyTeam.setPlayers(players);
-        return fantasyTeamDataGateway.getFantasyTeam(fantasy_teamid);
+        return fantasyTeam;
+    }
+
+    public List<FantasyTeam> getFantasyTeamByUserId(int userId) {
+        return fantasyTeamDataGateway.getFantasyTeamsByUserId(userId);
     }
 
     /**

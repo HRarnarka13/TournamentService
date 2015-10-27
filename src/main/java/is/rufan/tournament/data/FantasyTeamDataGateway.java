@@ -32,4 +32,11 @@ public interface FantasyTeamDataGateway {
      * @return a list containing all fantasy teams
      */
     public List<FantasyTeam> getFantasyTeams();
+
+    /**
+     * Gets all teams for a given user
+     * @param userId
+     * @return
+     */
+    public List<FantasyTeam> getFantasyTeamsByUserId(int userId);
 }

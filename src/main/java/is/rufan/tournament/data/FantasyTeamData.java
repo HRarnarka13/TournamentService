@@ -73,4 +73,20 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
         List<FantasyTeam> fantasyTeams = query.query(sql, new FantasyTeamRowMapper());
         return fantasyTeams;
     }
+
+    public List<FantasyTeam> getFantasyTeamsByUserId(int userId) {
+        String sql = "Select * from fantasy_teams WHERE userid = ?";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+        try
+        {
+            List<FantasyTeam> teams = query.query(sql, new FantasyTeamRowMapper(), userId);
+            return teams;
+        }
+        catch (EmptyResultDataAccessException ex)
+        {
+            String msg = "Empty result";
+            log.warning(msg);
+            return null;
+        }
+    }
 }

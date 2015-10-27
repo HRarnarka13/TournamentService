@@ -13,6 +13,7 @@ public interface FantasyTeamService {
 
     public int getUserId(int fantasy_teamid);
     public FantasyTeam getFantasyTeam(int fantasy_teamid);
+    public List<FantasyTeam> getFantasyTeamByUserId(int userId);
     public int addFantasyTeam(int userid, List<Integer> playerids);
 
 }
