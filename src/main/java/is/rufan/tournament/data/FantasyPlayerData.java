@@ -48,6 +48,7 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
     /**
      * Gets a fantasy player with a specifc Id
      * @param playerid the id the player
+     * @param fantasy_teamid
      * @return A fantasy player with a specific Id
      */
     public FantasyPlayer getFantasyPlayer(int playerid, int fantasy_teamid) {

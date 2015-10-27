@@ -1,5 +1,6 @@
 package is.rufan.tournament.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,9 +19,11 @@ public class Tournament {
     private double entryFee;
     private int maxEntries;
     private List<Integer> tournamentGames;
-    private List<TournamentEnrollment>enrollments;
+    private List<TournamentEnrollment> enrollments;
 
     public Tournament() {
+        tournamentGames = new ArrayList<Integer>();
+        enrollments = new ArrayList<TournamentEnrollment>();
     }
 
     public Tournament(int tournamentid, String name, Date startTime, Date endTime, boolean status, double entryFee, int maxEntries, List<Integer> tournamentGames, List<TournamentEnrollment> enrollments) {

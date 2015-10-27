@@ -1,5 +1,6 @@
 package is.rufan.tournament.service;
 
+import is.rufan.tournament.data.FantasyPlayerDataGateway;
 import is.rufan.tournament.data.FantasyTeamDataGateway;
 import is.rufan.tournament.data.TournamentGameDataGateway;
 import is.rufan.tournament.domain.FantasyPlayer;
@@ -17,15 +18,13 @@ import java.util.List;
 public class FantasyTeamServiceData implements FantasyTeamService {
 
     RuDataAccessFactory factory;
-    RuDataAccessFactory factory_service;
     FantasyTeamDataGateway fantasyTeamDataGateway;
-    FantasyPlayerService fantasyPlayerService;
+    FantasyPlayerDataGateway fantasyPlayerDataGateway;
 
     public FantasyTeamServiceData() throws RuException  {
         factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         fantasyTeamDataGateway = (FantasyTeamDataGateway) factory.getDataAccess("fantasyTeamData");
-        factory_service = RuDataAccessFactory.getInstance("tournamentApp.xml");
-        fantasyPlayerService = (FantasyPlayerService) factory_service.getDataAccess("fantasyPlayerService");
+        fantasyPlayerDataGateway = (FantasyPlayerDataGateway) factory.getDataAccess("fantasyPlayerData");
     }
 
     public int getUserId(int fantasy_teamid) {
@@ -46,7 +45,7 @@ public class FantasyTeamServiceData implements FantasyTeamService {
     public int addFantasyTeam(int userid, List<Integer> playerids) {
         int fantasy_teamid = fantasyTeamDataGateway.addFantasyTeam(userid);
         for (Integer playerid : playerids) {
-            fantasyPlayerService.addFantasyPlayer(new FantasyPlayer(playerid, fantasy_teamid));
+            fantasyPlayerDataGateway.addFantasyPlayer(new FantasyPlayer(playerid, fantasy_teamid));
         }
         return fantasy_teamid;
     }

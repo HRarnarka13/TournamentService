@@ -26,9 +26,10 @@ public interface FantasyPlayerDataGateway {
     /**
      * Gets a fantasy player with a specifc Id
      * @param playerid the id the player
+     * @param fantasy_teamid
      * @return A fantasy player with a specific Id
      */
-    public FantasyPlayer getFantasyPlayer(int playerid);
+    public FantasyPlayer getFantasyPlayer(int playerid, int fantasy_teamid);
 
     /**
      * Gets all fantasy players, i.e all players that are in some fantasy team
