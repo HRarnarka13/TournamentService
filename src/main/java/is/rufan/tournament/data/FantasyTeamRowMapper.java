@@ -29,6 +29,7 @@ public class FantasyTeamRowMapper implements RowMapper<FantasyTeam> {
         FantasyTeam f = new FantasyTeam();
         f.setFantasyTeamId(rs.getInt("fantasy_teamid"));
         f.setUserId(rs.getInt("userid"));
+        f.setIsOpen(rs.getBoolean("isopen"));
         return f;
     }
 }
