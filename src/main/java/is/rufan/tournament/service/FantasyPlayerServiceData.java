@@ -23,7 +23,7 @@ public class FantasyPlayerServiceData implements FantasyPlayerService {
     }
 
     public List<FantasyPlayer> getFantasyPlayersByTeamId(int fantasy_teamid) {
-        return fantasyPlayerDataGateway.getFantasyPlayerByTeamId(fantasy_teamid);
+        return fantasyPlayerDataGateway.getFantasyPlayersByTeamId(fantasy_teamid);
     }
 
     public void addFantasyPlayer(FantasyPlayer fantasyPlayer) {

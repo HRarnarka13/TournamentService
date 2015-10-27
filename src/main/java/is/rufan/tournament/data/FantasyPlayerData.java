@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,11 +83,15 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
      * @param fantasy_teamid The id of the fantasy team
      * @return A list of fantasy players in a specific team
      */
-    public List<Integer> getFantasyPlayersByTeamId(int fantasy_teamid) {
+    public List<FantasyPlayer> getFantasyPlayersByTeamId(int fantasy_teamid) {
 
         String sql = "Select playerid from fantasy_team_players where fantasy_teamid = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
         List<Integer> fantasyPlayers = query.queryForList(sql, new Object[]{ fantasy_teamid }, Integer.TYPE);
-        return fantasyPlayers;
+        List<FantasyPlayer> fantasyPlayerList = new ArrayList<FantasyPlayer>();
+        for(Integer i : fantasyPlayers) {
+            fantasyPlayerList.add(new FantasyPlayer(i, fantasy_teamid));
+        }
+        return fantasyPlayerList;
     }
 }
