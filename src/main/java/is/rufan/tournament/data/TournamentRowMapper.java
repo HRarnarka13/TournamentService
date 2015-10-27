@@ -11,8 +11,17 @@ import java.sql.SQLException;
  *
  * @author arnarkari
  */
+/**
+ * Maps the Tournament entity class to a database table
+ */
 public class TournamentRowMapper implements RowMapper<Tournament> {
-
+    /**
+     * Returns a instance of the Tournament entity class with values from the database
+     * @param rs the results from a query
+     * @param rowNum number of rows
+     * @return a tournament containing information fetched from the database
+     * @throws SQLException
+     */
     public Tournament mapRow(ResultSet rs, int rowNum) throws SQLException {
         Tournament tournament = new Tournament();
         tournament.setTournamentid(rs.getInt("tournamentid"));

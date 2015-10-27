@@ -16,7 +16,15 @@ import java.util.Map;
 /**
  * Created by eysteinn on 26/10/15.
  */
+/**
+ * A class implementing TournamentGameDataGateway.
+ * Contains functionality for interacting with a SQL database
+ */
 public class TournamentGameData extends RuData implements TournamentGameDataGateway {
+    /**
+     * Adds a new tournamentGame to the system
+     * @param game the game to be added
+     */
     public void addGame(TournamentGame game) {
         SimpleJdbcInsert insertGame =
                 new SimpleJdbcInsert(getDataSource())
@@ -37,6 +45,11 @@ public class TournamentGameData extends RuData implements TournamentGameDataGate
         }
     }
 
+    /**
+     * Gets all games in a specifc tournament
+     * @param tournamentId the id of the tournament
+     * @return games in a specific tournament
+     */
     public List<Integer> getGamesByTournamentId(int tournamentId) {
         String sql = "Select gameId from tournament_games where tournamentId = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
