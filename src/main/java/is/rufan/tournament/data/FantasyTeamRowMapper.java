@@ -12,8 +12,18 @@ import java.sql.SQLException;
  *
  * @author arnarkari
  */
+/**
+ * Maps the fantasyTeam entity class to a database table
+ */
 public class FantasyTeamRowMapper implements RowMapper<FantasyTeam> {
 
+    /**
+     * Returns a  instance of the fantasyTeam entity class with values from the database
+     * @param rs the results from a query
+     * @param rowNum number of rows
+     * @return a fantasy team containing information fetched from the database
+     * @throws SQLException
+     */
     public FantasyTeam mapRow(ResultSet rs, int rowNum) throws SQLException {
 
         FantasyTeam f = new FantasyTeam();

@@ -17,8 +17,16 @@ import java.util.Map;
 /**
  * Created by eysteinn on 26/10/15.
  */
+/**
+ * A class implementing TournamentEnrollmentDataGateway.
+ * Contains functionality for interacting with a SQL database
+ */
 public class TournamentEnrollmentData extends RuData implements TournamentEnrollmentDataGateway {
 
+    /**
+     * Add a new TournamentEnrollment to the database
+     * @param enrollment the enrollment to be added
+     */
     public void addEnrollment(TournamentEnrollment enrollment) {
         SimpleJdbcInsert insertEnrollment = new SimpleJdbcInsert(getDataSource())
                 .withTableName("tournament_enrollments");
@@ -39,6 +47,10 @@ public class TournamentEnrollmentData extends RuData implements TournamentEnroll
         }
     }
 
+    /**
+     * Gets all TournamentEnrollments in the system
+     * @return a list of TournamentEnrollments
+     */
     public List<TournamentEnrollment> getEnrollments() {
         String sql = "SELECT * from tournament_enrollments";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
@@ -46,6 +58,11 @@ public class TournamentEnrollmentData extends RuData implements TournamentEnroll
         return tournamentEnrollments;
     }
 
+    /**
+     * Gets all enrollments for a specific tournament
+     * @param tournamentId the id of the tournament
+     * @return a list of enrollments in the tournament
+     */
     public List<TournamentEnrollment> getEnrollmentsByTournamentId(int tournamentId) {
         String sql = "SELECT * from tournament_enrollments WHERE tournamentID = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
@@ -66,7 +83,7 @@ public class TournamentEnrollmentData extends RuData implements TournamentEnroll
     /**
      * Returns all tournament enrollments for a specific team.
      * @param teamId
-     * @return
+     * @return a list of enrollments for a specific team
      */
     public List<TournamentEnrollment> getEnrollmentsByTeamId(int teamId) {
         String sql = "SELECT * FROM tournament_enrollments WHERE teamId = ?";

@@ -17,8 +17,17 @@ import java.util.Map;
  *
  * @author arnarkari
  */
+/**
+ * A class implementing TournamentDataGateway.
+ * Contains functionality for interacting with a SQL database
+ */
 public class TournamentData extends RuData implements  TournamentDataGateway {
 
+    /**
+     * Adds a new tournament to the database
+     * @param tournament the tournament to be added
+     * @throws TournamentServiceException
+     */
     public int addTournament(Tournament tournament) throws TournamentServiceException {
         SimpleJdbcInsert insertTournament =
                 new SimpleJdbcInsert(getDataSource())
@@ -45,6 +54,11 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
         }
     }
 
+    /**
+     * Get a tournament by id
+     * @param tournamentid the id of the tournament
+     * @return a tournament with a specific id
+     */
     public Tournament getTournament(int tournamentid) {
         String sql = "Select * from tournaments where tournamentId = ?";
         JdbcTemplate queryTournament = new JdbcTemplate(getDataSource());
@@ -61,12 +75,20 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
         }
     }
 
+    /**
+     * Close a specific tournament. We dont delete it since it may contain valuable records, so its marked as inactive
+     * @param tournamentid the tournament to be closed
+     */
     public void closeTournament(int tournamentid) {
         String sql = "Update tournaments Set status = 0 WHERE tournamentId = ?";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
         query.update(sql, tournamentid);
     }
 
+    /**
+     * Gets all tournaments in the system
+     * @return a list of tournaments
+     */
     public List<Tournament> getTournaments() {
         String sql = "Select * from tournaments";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
@@ -77,6 +99,10 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
 
     }
 
+    /**
+     * Get all tournaments that are active, i.e have not been closed.
+     * @return all active tournaments
+     */
     public List<Tournament> getActiveTournaments() {
         String sql = "SELECT * FROM tournaments WHERE status = 1";
         JdbcTemplate query = new JdbcTemplate(getDataSource());

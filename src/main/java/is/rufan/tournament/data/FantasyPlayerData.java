@@ -17,8 +17,18 @@ import java.util.Map;
  *
  * @author arnarkari
  */
+
+/**
+ * A class implementing FantasyPlayerDataGateway.
+ * Contains functionality for interacting with a SQL database
+ */
 public class FantasyPlayerData extends RuData implements FantasyPlayerDataGateway {
 
+    /**
+     * Adds a real football player to a Users fantasy team
+     * @param fantasyPlayer Player containing both fantasy teamid and playerId
+     * @throws FantasyTeamSeriveExeption
+     */
     public void addFantasyPlayer(FantasyPlayer fantasyPlayer) throws FantasyTeamSeriveExeption {
         SimpleJdbcInsert insertFantasyPlayer  = new SimpleJdbcInsert(getDataSource())
                 .withTableName("fantasy_team_players");
@@ -34,6 +44,12 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
         }
     }
 
+
+    /**
+     * Gets a fantasy player with a specifc Id
+     * @param playerid the id the player
+     * @return A fantasy player with a specific Id
+     */
     public FantasyPlayer getFantasyPlayer(int playerid, int fantasy_teamid) {
         String sql = "Select * from fantasy_team_players where playerid = ? and fantasy_teamid = ?";
         JdbcTemplate queryFantasyPlayer = new JdbcTemplate(getDataSource());
@@ -47,6 +63,10 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
         }
     }
 
+    /**
+     * Gets all fantasy players, i.e all players that are in some fantasy team
+     * @return A list of fantasy players
+     */
     public List<FantasyPlayer> getFantasyPlayers() {
         String sql = "Select * from fantasy_team_players";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
@@ -54,6 +74,11 @@ public class FantasyPlayerData extends RuData implements FantasyPlayerDataGatewa
         return fantasyPlayers;
     }
 
+    /**
+     * Gets all players in a specifc fantasy team.
+     * @param fantasy_teamid The id of the fantasy team
+     * @return A list of fantasy players in a specific team
+     */
     public List<FantasyPlayer> getFantasyPlayerByTeamId(int fantasy_teamid) {
 
         String sql = "Select * from fantasy_team_players where fantasy_teamid = ?";

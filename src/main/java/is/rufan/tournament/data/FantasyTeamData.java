@@ -16,8 +16,17 @@ import java.util.Map;
  *
  * @author arnarkari
  */
+/**
+ * A class implementing FantasyTeamGateway.
+ * Contains functionality for interacting with a SQL database
+ */
 public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
 
+    /**
+     * Adds a new fantasyTeam to the database.
+     * @param userid userid
+     * @throws FantasyTeamSeriveExeption
+     */
     public int addFantasyTeam(int userid) throws FantasyTeamSeriveExeption {
         SimpleJdbcInsert insertFantasyTeam  = new SimpleJdbcInsert(getDataSource())
                 .withTableName("fantasy_team")
@@ -35,6 +44,11 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
 
     }
 
+    /**
+     * Gets a specific fantasy team
+     * @param fantasy_teamid the id of the team
+     * @return a fantasy team with a specific id
+     */
     public FantasyTeam getFantasyTeam(int fantasy_teamid) {
 
         String sql = "Select * from fantasy_teams where fantasy_teamid = ?";
@@ -49,6 +63,10 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
         }
     }
 
+    /**
+     * Gets all fantasy teams in the system
+     * @return a list containing all fantasy teams
+     */
     public List<FantasyTeam> getFantasyTeams() {
         String sql = "Select * from fantasy_teams";
         JdbcTemplate query = new JdbcTemplate(getDataSource());
