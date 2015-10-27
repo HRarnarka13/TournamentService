@@ -9,6 +9,7 @@ import java.util.List;
 public class FantasyTeam {
     private int fantasyTeamId;
     private int userId;
+    private boolean isOpen;
     private List<Integer> players;
 
     public FantasyTeam() {
@@ -19,11 +20,13 @@ public class FantasyTeam {
         this.fantasyTeamId = fantasyTeamId;
         this.userId = userId;
         this.players = players;
+        this.isOpen = true;
     }
 
     public FantasyTeam(int userId, List<Integer> players) {
         this.userId = userId;
         this.players = players;
+        this.isOpen = true;
     }
 
     public int getFantasyTeamId() {
@@ -48,5 +51,13 @@ public class FantasyTeam {
 
     public void setPlayers(List<Integer> players) {
         this.players = players;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
     }
 }

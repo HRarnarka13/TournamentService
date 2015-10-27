@@ -32,8 +32,9 @@ public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
                 .withTableName("fantasy_teams")
                 .usingGeneratedKeyColumns("fantasy_teamid");
 
-        Map<String, Object> fantasyTeamParameters = new HashMap<String, Object>(2);
+        Map<String, Object> fantasyTeamParameters = new HashMap<String, Object>(3);
         fantasyTeamParameters.put("userid", userid);
+        fantasyTeamParameters.put("isopen", true);
 
         try {
             return insertFantasyTeam.executeAndReturnKey(fantasyTeamParameters).intValue();
