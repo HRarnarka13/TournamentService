@@ -1,5 +1,6 @@
 package is.rufan.tournament.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,6 +12,7 @@ public class FantasyTeam {
     private List<Integer> players;
 
     public FantasyTeam() {
+        players = new ArrayList<Integer>();
     }
 
     public FantasyTeam(int fantasyTeamId, int userId, List<Integer> players) {

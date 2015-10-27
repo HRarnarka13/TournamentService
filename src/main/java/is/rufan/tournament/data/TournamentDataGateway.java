@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface TournamentDataGateway extends RuDataAccess {
 
-    public void addTournament(Tournament tournament) throws TournamentServiceException;
+    public int addTournament(Tournament tournament) throws TournamentServiceException;
     public Tournament getTournament(int tournamentid);
     public void closeTournament(int tournamentid);
     public List<Tournament> getTournaments();

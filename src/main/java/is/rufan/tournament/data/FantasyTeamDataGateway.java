@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface FantasyTeamDataGateway {
 
-    public void addFantasyTeam(FantasyTeam fantasyTeam) throws FantasyTeamSeriveExeption;
+    public int addFantasyTeam(int userid) throws FantasyTeamSeriveExeption;
     public FantasyTeam getFantasyTeam(int fantasy_teamid);
     public List<FantasyTeam> getFantasyTeams();
 }

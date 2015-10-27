@@ -1,13 +1,17 @@
 package is.rufan.tournament.service;
 
+import is.rufan.tournament.data.FantasyTeamDataGateway;
 import is.rufan.tournament.data.TournamentDataGateway;
 import is.rufan.tournament.data.TournamentGameData;
 import is.rufan.tournament.data.TournamentGameDataGateway;
+import is.rufan.tournament.domain.FantasyTeam;
 import is.rufan.tournament.domain.Tournament;
+import is.rufan.tournament.domain.TournamentEnrollment;
 import is.rufan.tournament.domain.TournamentGame;
 import is.ruframework.data.RuDataAccessFactory;
 import is.ruframework.domain.RuException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,17 +21,29 @@ import java.util.List;
  */
 public class TournamentServiceData implements TournamentService {
     RuDataAccessFactory factory;
-    TournamentDataGateway tournamentDataGateway;
+    RuDataAccessFactory factory_service;
     TournamentGameDataGateway gameDataGateway;
+
+    TournamentDataGateway tournamentDataGateway;
+    FantasyTeamService fantasyTeamService;
 
     public TournamentServiceData() throws RuException {
         factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         tournamentDataGateway = (TournamentDataGateway) factory.getDataAccess("tournamentData");
         gameDataGateway = (TournamentGameDataGateway) factory.getDataAccess("gameData");
+
+        factory_service = RuDataAccessFactory.getInstance("tournamentApp.xml");
+        fantasyTeamService = (FantasyTeamService) factory_service.getDataAccess("fantasyTeamService");
     }
 
-    public void addTournament(Tournament tournament) throws TournamentServiceException {
-        tournamentDataGateway.addTournament(tournament);
+    public int addTournament(Tournament tournament) throws TournamentServiceException {
+        int tournamentid =  tournamentDataGateway.addTournament(tournament);
+        if (tournamentid != -1) {
+            for (Integer gameid : tournament.getTournamentGames()) {
+                gameDataGateway.addGame(new TournamentGame(gameid, tournamentid));
+            }
+        }
+        return tournamentid;
     }
 
     public List<Tournament> getTournaments() {
@@ -44,5 +60,16 @@ public class TournamentServiceData implements TournamentService {
 
     public Tournament getTournamentById(int tournamentId) {
         return tournamentDataGateway.getTournament(tournamentId);
+    }
+
+    public List<FantasyTeam> getFantasyTeamsByTournamentId(int tournamentid) {
+        // Get the tournament
+        Tournament t = tournamentDataGateway.getTournament(tournamentid);
+        List<FantasyTeam> fantasyTeams = new ArrayList<FantasyTeam>();
+        // For each enrollment get the fantasy team
+        for (TournamentEnrollment te : t.getEnrollments()) {
+            fantasyTeams.add(fantasyTeamService.getFantasyTeam(te.getTeamId()));
+        }
+        return fantasyTeams;
     }
 }

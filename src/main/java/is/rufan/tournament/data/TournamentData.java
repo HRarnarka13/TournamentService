@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class TournamentData extends RuData implements  TournamentDataGateway {
 
-    public void addTournament(Tournament tournament) throws TournamentServiceException {
+    public int addTournament(Tournament tournament) throws TournamentServiceException {
         SimpleJdbcInsert insertTournament =
                 new SimpleJdbcInsert(getDataSource())
                         .withTableName("tournaments")
@@ -35,12 +35,13 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
 
         try
         {
-            insertTournament.execute(tournamentParameters);
+            return insertTournament.executeAndReturnKey(tournamentParameters).intValue();
         }
         catch (DataIntegrityViolationException divex)
         {
             String msg = "Duplicate entry";
             log.warning(msg);
+            return -1;
         }
     }
 

@@ -18,18 +18,19 @@ import java.util.Map;
  */
 public class FantasyTeamData extends RuData implements FantasyTeamDataGateway {
 
-    public void addFantasyTeam(FantasyTeam fantasyTeam) throws FantasyTeamSeriveExeption {
+    public int addFantasyTeam(int userid) throws FantasyTeamSeriveExeption {
         SimpleJdbcInsert insertFantasyTeam  = new SimpleJdbcInsert(getDataSource())
                 .withTableName("fantasy_team")
                 .usingGeneratedKeyColumns("fantasy_teamid");
 
         Map<String, Object> fantasyTeamParameters = new HashMap<String, Object>(2);
-        fantasyTeamParameters.put("userid", fantasyTeam.getUserId());
+        fantasyTeamParameters.put("userid", userid);
 
         try {
-            insertFantasyTeam.execute(fantasyTeamParameters);
+            return insertFantasyTeam.executeAndReturnKey(fantasyTeamParameters).intValue();
         } catch (DataIntegrityViolationException divex) {
             log.warning("Duplicate entry");
+            return -1;
         }
 
     }
