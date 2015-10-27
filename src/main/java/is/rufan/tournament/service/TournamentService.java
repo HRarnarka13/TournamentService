@@ -19,5 +19,5 @@ public interface TournamentService {
     public List<Integer> getTournamentGames(int tournamentId);
     public Tournament getTournamentById(int tournamentId);
     public List<FantasyTeam> getFantasyTeamsByTournamentId(int tournamentid);
-    public void addEnrollment(int userId, int teamId);
+    public void addEnrollment(int tournamentId, int teamId);
 }

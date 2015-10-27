@@ -72,8 +72,8 @@ public class TournamentServiceData implements TournamentService {
         return fantasyTeams;
     }
 
-    public void addEnrollment(int userId, int teamId) {
-        TournamentEnrollment tm = new TournamentEnrollment(userId, teamId, 0);
+    public void addEnrollment(int tournamentId, int teamId) {
+        TournamentEnrollment tm = new TournamentEnrollment(tournamentId, teamId, 0);
         tournamentEnrollmentDataGateway.addEnrollment(tm);
     }
 }
