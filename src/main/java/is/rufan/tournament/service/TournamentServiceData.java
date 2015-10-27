@@ -18,20 +18,18 @@ import java.util.List;
  */
 public class TournamentServiceData implements TournamentService {
     RuDataAccessFactory factory;
-    RuDataAccessFactory factory_service;
     TournamentGameDataGateway gameDataGateway;
     TournamentEnrollmentDataGateway tournamentEnrollmentDataGateway;
 
     TournamentDataGateway tournamentDataGateway;
-    FantasyTeamService fantasyTeamService;
+    FantasyTeamDataGateway fantasyTeamDataGateway;
 
     public TournamentServiceData() throws RuException {
         factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         tournamentDataGateway = (TournamentDataGateway) factory.getDataAccess("tournamentData");
         gameDataGateway = (TournamentGameDataGateway) factory.getDataAccess("gameData");
 
-        factory_service = RuDataAccessFactory.getInstance("tournamentApp.xml");
-        fantasyTeamService = (FantasyTeamService) factory_service.getDataAccess("fantasyTeamService");
+        fantasyTeamDataGateway = (FantasyTeamDataGateway) factory.getDataAccess("fantasyTeamData");
     }
 
     public int addTournament(Tournament tournament) throws TournamentServiceException {
@@ -66,7 +64,7 @@ public class TournamentServiceData implements TournamentService {
         List<FantasyTeam> fantasyTeams = new ArrayList<FantasyTeam>();
         // For each enrollment get the fantasy team
         for (TournamentEnrollment te : t.getEnrollments()) {
-            fantasyTeams.add(fantasyTeamService.getFantasyTeam(te.getTeamId()));
+            fantasyTeams.add(fantasyTeamDataGateway.getFantasyTeam(te.getTeamId()));
         }
         return fantasyTeams;
     }
