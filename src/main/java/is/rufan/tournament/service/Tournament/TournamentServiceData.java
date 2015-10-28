@@ -46,11 +46,19 @@ public class TournamentServiceData implements TournamentService {
     }
 
     public List<Tournament> getTournaments() {
-        return tournamentDataGateway.getTournaments();
+        List<Tournament> tournaments = tournamentDataGateway.getTournaments();
+        for (Tournament t : tournaments) {
+            t.setEnrollments(tournamentEnrollmentDataGateway.getEnrollmentsByTournamentId(t.getTournamentid()));
+        }
+        return tournaments;
     }
 
     public List<Tournament> getActiveTournaments() {
-        return tournamentDataGateway.getActiveTournaments();
+        List<Tournament> tournaments = tournamentDataGateway.getActiveTournaments();
+        for (Tournament t : tournaments) {
+            t.setEnrollments(tournamentEnrollmentDataGateway.getEnrollmentsByTournamentId(t.getTournamentid()));
+        }
+        return tournaments;
     }
 
     public List<Integer> getTournamentGames(int tournamentId) {
