@@ -18,7 +18,7 @@ public class FantasyPointServiceData implements FantasyPointService {
     FantasyPointDataGateway fantasyPointDataGateway;
 
     public FantasyPointServiceData() throws RuException {
-        factory = RuDataAccessFactory.getInstance("playerdata.xml");
+        factory = RuDataAccessFactory.getInstance("tournamentData.xml");
         fantasyPointDataGateway = (FantasyPointDataGateway) factory.getDataAccess("fantasyPointData");
     }
 

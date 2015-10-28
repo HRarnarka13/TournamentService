@@ -16,7 +16,7 @@ public class FantasyPointRowMapper implements RowMapper<FantasyPoint> {
         FantasyPoint fantasyPoint = new FantasyPoint();
         fantasyPoint.setFantasyPoints(rs.getDouble("fantasyPoints"));
         fantasyPoint.setFantasyPointId(rs.getInt("fantasyPointId"));
-        fantasyPoint.setPlayerId(rs.getInt("fantasyPointPlayerId"));
+        fantasyPoint.setPlayerId(rs.getInt("playerId"));
         return fantasyPoint;
     }
 }

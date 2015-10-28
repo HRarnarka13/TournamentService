@@ -110,5 +110,4 @@ public class TournamentData extends RuData implements  TournamentDataGateway {
         List<Tournament> tournaments = query.query(sql, new TournamentRowMapper());
         return tournaments;
     }
-
 }
