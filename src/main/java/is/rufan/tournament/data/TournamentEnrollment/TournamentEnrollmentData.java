@@ -98,4 +98,10 @@ public class TournamentEnrollmentData extends RuData implements TournamentEnroll
             return null;
         }
     }
+
+    public void setScore(int tournamentid, int teamid, double score) {
+        String sql = "UPDATE tournament_enrollments SET score = ? WHERE tournamentid = ?  AND fantasy_teamid = ?";
+        JdbcTemplate query = new JdbcTemplate(getDataSource());
+        query.update(sql, score, tournamentid, teamid);
+    }
 }
