@@ -19,6 +19,6 @@ public interface TournamentService {
     public Tournament getTournamentById(int tournamentId);
     public List<FantasyTeam> getFantasyTeamsByTournamentId(int tournamentid);
     public void addEnrollment(int tournamentId, int teamId);
+    public void setScore(int tournamentId, int teamId, double score);
     public void closeTournament(int tournamentid);
-
 }

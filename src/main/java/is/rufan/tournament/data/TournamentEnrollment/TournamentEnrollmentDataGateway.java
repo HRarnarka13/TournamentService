@@ -35,4 +35,6 @@ public interface TournamentEnrollmentDataGateway extends RuDataAccess {
      */
     public List<TournamentEnrollment> getEnrollmentsByTeamId(int teamId);
 
+    public void setScore(int tournamentid, int teamid, double score);
+
 }
