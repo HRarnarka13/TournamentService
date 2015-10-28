@@ -25,9 +25,10 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="tournamentData" class="is.rufan.tournament.data.TournamentData"></bean>
-    <bean id="gameData" class="is.rufan.tournament.data.TournamentGameData"></bean>
-    <bean id="fantasyTeamData" class="is.rufan.tournament.data.FantasyTeamData"></bean>
-    <bean id="fantasyPlayerData" class="is.rufan.tournament.data.FantasyPlayerData"></bean>
-    <bean id="tournamentEnrollmentData" class="is.rufan.tournament.data.TournamentEnrollmentData"></bean>
+    <bean id="tournamentData" class="is.rufan.tournament.data.Tournament.TournamentData"></bean>
+    <bean id="gameData" class="is.rufan.tournament.data.TournamentGame.TournamentGameData"></bean>
+    <bean id="fantasyTeamData" class="is.rufan.tournament.data.FantasyTeam.FantasyTeamData"></bean>
+    <bean id="fantasyPlayerData" class="is.rufan.tournament.data.FantasyPlayer.FantasyPlayerData"></bean>
+    <bean id="tournamentEnrollmentData" class="is.rufan.tournament.data.TournamentEnrollment.TournamentEnrollmentData"></bean>
+    <bean id="fantasyPointData" class="is.rufan.tournament.data.FantasyPoint.FantasyPointData "/>
 </beans>
