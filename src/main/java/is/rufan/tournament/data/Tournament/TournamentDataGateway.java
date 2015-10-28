@@ -44,4 +44,5 @@ public interface TournamentDataGateway extends RuDataAccess {
      * @return all active tournaments
      */
     public List<Tournament> getActiveTournaments();
+
 }

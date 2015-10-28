@@ -3,6 +3,7 @@ package is.rufan.tournament.data.FantasyPoint;
 import is.rufan.tournament.domain.FantasyPoint;
 import is.ruframework.data.RuData;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
@@ -43,7 +44,7 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
     }
 
     public FantasyPoint getFantasyPointById(int fantasyPointId) {
-        String sql = "Select * from fantasyPoints where id = ?";
+        String sql = "Select * from fantasyPoints where fantasyPointId = ?";
         JdbcTemplate queryFantasyPoints = new JdbcTemplate(getDataSource());
         FantasyPoint fantasyPoint = queryFantasyPoints.queryForObject(sql, new Object[]{fantasyPointId}, new FantasyPointRowMapper());
 
@@ -51,9 +52,15 @@ public class FantasyPointData extends RuData implements FantasyPointDataGateway 
     }
 
     public FantasyPoint getFantasyPointByPlayerId(int playerId) {
-        String sql = "Select *  from fantasyPoints where id = ?";
+        String sql = "Select *  from fantasyPoints where playerId = ?";
         JdbcTemplate queryFantasyPoints = new JdbcTemplate(getDataSource());
-        FantasyPoint fantasyPoint = queryFantasyPoints.queryForObject(sql, new Object[]{playerId}, new FantasyPointRowMapper());
-        return fantasyPoint;
+        try {
+            FantasyPoint fantasyPoint = queryFantasyPoints.queryForObject(sql, new Object[]{ playerId }, new FantasyPointRowMapper());
+            return fantasyPoint;
+        } catch (EmptyResultDataAccessException ex ){
+            return null;
+        }
     }
+
+
 }

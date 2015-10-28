@@ -80,4 +80,8 @@ public class TournamentServiceData implements TournamentService {
         TournamentEnrollment tm = new TournamentEnrollment(tournamentId, teamId, 0);
         tournamentEnrollmentDataGateway.addEnrollment(tm);
     }
+
+    public void closeTournament(int tournamentid) {
+        tournamentDataGateway.closeTournament(tournamentid);
+    }
 }
